@@ -6,19 +6,20 @@ const createClient = async () => {
   return auth0;
 }
 
-const loginWithPopup = async () => {
+const loginWithPopup = async (auth0) => {
   await auth0.loginWithPopup();
+  
   //logged in. you can get the user profile like this:
   const user = await auth0.getUser();
   return user;
 }
 
-const getAccessToken = async() => {
+const getAccessToken = async(auth0) => {
   const accessToken = await auth0.getTokenSilently();
   return accessToken;
 }
 
-const logout = async () => {
+const logout = async (auth0) => {
   auth0.logout();
 }
 
@@ -28,14 +29,14 @@ const auth0 = createClient();
 window.addEventListener( "DOMContentLoaded", function() {
   // Login Click
   const loginClick = async ( event ) => {
-    await loginWithPopup();
+    await loginWithPopup(auth0);
   };
   const btnLogin = document.getElementById( "login" ); 
   btnLogin.addEventListener( "click", loginClick, false );
 
   // Logout Click
   const logoutClick = async ( event ) => {
-    await loginWithPopup();
+    await loginWithPopup(auth0);
   };
   const btnLogout = document.getElementById( "logout" ); 
   btnLogout.addEventListener( "click", logoutClick, false );
