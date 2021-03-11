@@ -23,3 +23,20 @@ const logout = async () => {
 }
 
 const auth0 = createClient();
+
+// after DOM contents are loaded
+window.addEventListener( "DOMContentLoaded", function() {
+  // Login Click
+  const loginClick = async ( event ) => {
+    await loginWithPopup();
+  };
+  const btnLogin = document.getElementById( "login" ); 
+  btnLogin.addEventListener( "click", loginClick, false );
+
+  // Logout Click
+  const logoutClick = async ( event ) => {
+    await loginWithPopup();
+  };
+  const btnLogout = document.getElementById( "logout" ); 
+  btnLogout.addEventListener( "click", logoutClick, false );
+}
