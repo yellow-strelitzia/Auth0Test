@@ -39,4 +39,4 @@ window.addEventListener( "DOMContentLoaded", function() {
   };
   const btnLogout = document.getElementById( "logout" ); 
   btnLogout.addEventListener( "click", logoutClick, false );
-}
+});
