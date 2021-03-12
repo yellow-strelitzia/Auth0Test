@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "auth0-js": "^9.14.3",
+    "@serverless-jwt/netlify": "^0.2.1",
     "netlify-lambda": "^2.0.3"
   },
   "scripts": {
