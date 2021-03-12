@@ -27,7 +27,7 @@ const logout = async () => {
 }
 
 const apiCall = async () => {
-  const accessToken = await auth0.getTokenSilently();
+  const accessToken = await auth0.getTokenSilently({audience: "urn:api"});
   const result = await fetch(window.location.origin + "/.netlify/functions/test", {
     method: "GET",
     headers: {
