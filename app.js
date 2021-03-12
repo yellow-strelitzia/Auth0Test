@@ -9,8 +9,6 @@ const createClient = async () => {
 }
 
 const login = async () => {
-  await auth0.loginWithPopup();
-  
   const options = {
     redirect_uri: window.location.origin
   };
@@ -40,12 +38,12 @@ window.addEventListener( "DOMContentLoaded", async function() {
     await loginWithPopup(auth0);
   };
   const btnLogin = document.getElementById( "login" ); 
-  btnLogin.addEventListener( "click", loginClick, false );
+  btnLogin.addEventListener( "click", login, false );
 
   // Logout Click
   const logoutClick = async ( event ) => {
     await loginWithPopup(auth0);
   };
   const btnLogout = document.getElementById( "logout" ); 
-  btnLogout.addEventListener( "click", logoutClick, false );
+  btnLogout.addEventListener( "click", logout, false );
 });
