@@ -15,10 +15,6 @@ const login = async () => {
 
   await auth0.loginWithRedirect(options);
   //await auth0.loginWithPopup();
-
-  //logged in. you can get the user profile like this:
-  const user = await auth0.getUser();
-  console.log(user);
 }
 
 const getAccessToken = async() => {
@@ -37,14 +33,6 @@ window.addEventListener( "DOMContentLoaded", async function() {
   const user = await auth0.getUser();
   console.log(user);
 
-  const authStatus = document.getElementById( "authStatus" ); 
-  if ( isAuthenticated ) {
-    authStatus.textContent = "Logged in.";
-    window.history.replaceState({}, document.title, window.location.pathname);
-  } else {
-    authStatus.textContent = "Not Logged in."
-  }
-
   const query = window.location.search;
   const shouldParseResult = query.includes("code=") && query.includes("state=");
 
@@ -62,14 +50,22 @@ window.addEventListener( "DOMContentLoaded", async function() {
     window.history.replaceState({}, document.title, "/");
   }
 
-  // Login Click
+  const authStatus = document.getElementById( "authStatus" ); 
+  if ( isAuthenticated ) {
+    authStatus.textContent = "Logged in.";
+    window.history.replaceState({}, document.title, window.location.pathname);
+  } else {
+    authStatus.textContent = "Not Logged in."
+  }
+
+  // Event Listener : Login Click
   const loginClick = async ( event ) => {
     await loginWithPopup(auth0);
   };
   const btnLogin = document.getElementById( "login" ); 
   btnLogin.addEventListener( "click", login, false );
 
-  // Logout Click
+  // Event Listener : Logout Click
   const logoutClick = async ( event ) => {
     await loginWithPopup(auth0);
   };
