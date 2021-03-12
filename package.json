@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "netlify-lambda" : "^0.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:lambda": "netlify-lambda serve lambda",
+    "build:lambda": "netlify-lambda build lambda"
+  } 
+}
