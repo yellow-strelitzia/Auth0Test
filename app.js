@@ -26,6 +26,10 @@ const logout = async () => {
   auth0.logout();
 }
 
+const apiCall = async () => {
+  auth0.logout();
+}
+
 // after DOM contents are loaded
 window.addEventListener( "DOMContentLoaded", async function() {
   await createClient();
@@ -61,15 +65,22 @@ window.addEventListener( "DOMContentLoaded", async function() {
 
   // Event Listener : Login Click
   const loginClick = async ( event ) => {
-    await loginWithPopup(auth0);
+    await login();
   };
   const btnLogin = document.getElementById( "login" ); 
-  btnLogin.addEventListener( "click", login, false );
+  btnLogin.addEventListener( "click", loginClick, false );
 
   // Event Listener : Logout Click
   const logoutClick = async ( event ) => {
-    await loginWithPopup(auth0);
+    await logout();
   };
   const btnLogout = document.getElementById( "logout" ); 
-  btnLogout.addEventListener( "click", logout, false );
+  btnLogout.addEventListener( "click", logoutClick, false );
+
+  // Event Listener : API Call Click
+  const apiCallClick = async ( event ) => {
+    await apiCall();
+  };
+  const btnLogout = document.getElementById( "logout" ); 
+  btnLogout.addEventListener( "click", apiCallClick, false );
 });
