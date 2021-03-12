@@ -24,7 +24,7 @@ const getAccessToken = async() => {
   return accessToken;
 }
 
-const logout = async (auth0) => {
+const logout = async () => {
   auth0.logout();
 }
 
