@@ -27,7 +27,15 @@ const logout = async () => {
 }
 
 const apiCall = async () => {
-  auth0.logout();
+  const accessToken = await auth0.getTokenSilently();
+  const result = await fetch(window.location.origin + ".netlify/functions/test", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
+  const data = await result.json();
+  console.log(data);
 }
 
 // after DOM contents are loaded
