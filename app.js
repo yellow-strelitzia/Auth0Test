@@ -1,4 +1,5 @@
 let auth0 = null;
+let isAuthenticated  = null;
 
 const createClient = async () => {
   auth0 = await createAuth0Client({
@@ -30,7 +31,13 @@ const logout = async () => {
 
 // after DOM contents are loaded
 window.addEventListener( "DOMContentLoaded", async function() {
-  auth0 = createClient();
+  auth0 = await createClient();
+  isAuthenticated = await auth0.isAuthenticated();
+  const authStatus = document.getElementById( "authStatus" ); 
+  if ( isAuthenticated )
+    authStatus.textContent = "Logged in.";
+  else
+    authStatus.textContent = "Not Logged in."
 
   // Login Click
   const loginClick = async ( event ) => {
