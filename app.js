@@ -17,7 +17,7 @@ const login = async () => {
 
   //logged in. you can get the user profile like this:
   const user = await auth0.getUser();
-  return user;
+  console.log(user);
 }
 
 const getAccessToken = async() => {
