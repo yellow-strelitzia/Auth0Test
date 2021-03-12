@@ -29,9 +29,6 @@ const logout = async () => {
 // after DOM contents are loaded
 window.addEventListener( "DOMContentLoaded", async function() {
   await createClient();
-  isAuthenticated = await auth0.isAuthenticated();
-  const user = await auth0.getUser();
-  console.log(user);
 
   const query = window.location.search;
   const shouldParseResult = query.includes("code=") && query.includes("state=");
@@ -49,6 +46,10 @@ window.addEventListener( "DOMContentLoaded", async function() {
 
     window.history.replaceState({}, document.title, "/");
   }
+
+  isAuthenticated = await auth0.isAuthenticated();
+  const user = await auth0.getUser();
+  console.log(user);
 
   const authStatus = document.getElementById( "authStatus" ); 
   if ( isAuthenticated ) {
