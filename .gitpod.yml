@@ -1,2 +1,8 @@
 image:
   file: .gitpod.dockerfile
+
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint@2.1.8:02aHhbJ0Q4aGdjHXlTdVKg==
+    - esbenp.prettier-vscode@5.7.1:GDba64T6G+TUi1qmc6BE3A==
+    - dsznajder.es7-react-js-snippets@3.0.0:9YEGn/57fW8lJt7cVxJQDQ==
