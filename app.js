@@ -1,3 +1,5 @@
+let auth0 = null;
+
 const createClient = async () => {
   let auth0 = await createAuth0Client({
     domain: 'kunigogo-dev-public.us.auth0.com',
@@ -6,15 +8,21 @@ const createClient = async () => {
   return auth0;
 }
 
-const loginWithPopup = async (auth0) => {
+const login = async () => {
   await auth0.loginWithPopup();
   
+  const options = {
+    redirect_uri: window.location.origin
+  };
+
+  await auth0.loginWithRedirect(options);
+
   //logged in. you can get the user profile like this:
   const user = await auth0.getUser();
   return user;
 }
 
-const getAccessToken = async(auth0) => {
+const getAccessToken = async() => {
   const accessToken = await auth0.getTokenSilently();
   return accessToken;
 }
@@ -23,10 +31,10 @@ const logout = async (auth0) => {
   auth0.logout();
 }
 
-const auth0 = createClient();
-
 // after DOM contents are loaded
-window.addEventListener( "DOMContentLoaded", function() {
+window.addEventListener( "DOMContentLoaded", async function() {
+  auth0 = createClient();
+
   // Login Click
   const loginClick = async ( event ) => {
     await loginWithPopup(auth0);
