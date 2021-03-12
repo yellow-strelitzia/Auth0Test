@@ -81,6 +81,6 @@ window.addEventListener( "DOMContentLoaded", async function() {
   const apiCallClick = async ( event ) => {
     await apiCall();
   };
-  const btnLogout = document.getElementById( "logout" ); 
-  btnLogout.addEventListener( "click", apiCallClick, false );
+  const btnAPICall = document.getElementById( "apicall" ); 
+  btnAPICall.addEventListener( "click", apiCallClick, false );
 });
