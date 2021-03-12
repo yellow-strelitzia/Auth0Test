@@ -33,6 +33,9 @@ const logout = async () => {
 window.addEventListener( "DOMContentLoaded", async function() {
   await createClient();
   isAuthenticated = await auth0.isAuthenticated();
+  const user = await auth0.getUser();
+  console.log(user);
+
   const authStatus = document.getElementById( "authStatus" ); 
   if ( isAuthenticated ) {
     authStatus.textContent = "Logged in.";
