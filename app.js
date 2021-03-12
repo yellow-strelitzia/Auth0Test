@@ -34,10 +34,29 @@ window.addEventListener( "DOMContentLoaded", async function() {
   await createClient();
   isAuthenticated = await auth0.isAuthenticated();
   const authStatus = document.getElementById( "authStatus" ); 
-  if ( isAuthenticated )
+  if ( isAuthenticated ) {
     authStatus.textContent = "Logged in.";
-  else
+    window.history.replaceState({}, document.title, window.location.pathname);
+  } else {
     authStatus.textContent = "Not Logged in."
+  }
+
+  const query = window.location.search;
+  const shouldParseResult = query.includes("code=") && query.includes("state=");
+
+  if (shouldParseResult) {
+    try {
+      const result = await auth0.handleRedirectCallback();
+
+      if (result.appState && result.appState.targetUrl) {
+        showContentFromUrl(result.appState.targetUrl);
+      }
+    } catch (err) {
+      console.log("Error parsing redirect:", err);
+    }
+
+    window.history.replaceState({}, document.title, "/");
+  }
 
   // Login Click
   const loginClick = async ( event ) => {
