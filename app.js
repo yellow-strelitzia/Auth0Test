@@ -13,7 +13,8 @@ const login = async () => {
     redirect_uri: window.location.origin
   };
 
-  await auth0.loginWithRedirect(options);
+  //await auth0.loginWithRedirect(options);
+  await auth0.loginWithPopup();
 
   //logged in. you can get the user profile like this:
   const user = await auth0.getUser();
